@@ -9,11 +9,11 @@ export const handler = async (event) => {
 
   if (!cpf) {
     policyDocument = generatePolicy(principalId, 'Allow', event.methodArn);
-  } else {
+  } 
+  
+  if (cpf) {
     policyDocument = generatePolicy(principalId, 'Allow', event.methodArn);
-  }
-
-  if (authorizationHeader && authorizationHeader === `Basic ${Buffer.from(defaultPassword).toString('base64')}`) {
+  } else if (authorizationHeader && authorizationHeader === `Basic ${Buffer.from(defaultPassword).toString('base64')}`) {
     policyDocument = generatePolicy(principalId, 'Allow', event.methodArn);
   } else {
     policyDocument = generatePolicy(principalId, 'Deny', event.methodArn);
