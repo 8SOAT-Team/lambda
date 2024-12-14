@@ -1,4 +1,4 @@
-name: CI/CD with Terraform for Lambda
+name: Lambda
 
 on:
   push:
