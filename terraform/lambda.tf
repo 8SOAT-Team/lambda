@@ -3,8 +3,8 @@ resource "aws_lambda_function" "lambda" {
   runtime       = "nodejs18.x"
   role          = aws_iam_role.lambda_exec.arn
   handler       = "index.handler"
-  filename      = "lambda.zip"
-  source_code_hash = filebase64sha256("lambda.zip")
+  filename      = "../lambda.zip"
+  source_code_hash = filebase64sha256("../lambda.zip")
 }
 
 resource "aws_lambda_permission" "api_gateway_permission" {
