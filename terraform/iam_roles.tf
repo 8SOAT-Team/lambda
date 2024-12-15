@@ -1,5 +1,5 @@
-resource "aws_iam_policy" "iam_create_role_policy_v2" {
-  name        = "iam_create_role_policy-v2"
+resource "aws_iam_policy" "iam_create_role_policy" {
+  name        = "iam_create_role_policy"
   description = "Permite criar roles IAM e anexar políticas"
   policy      = jsonencode({
     Version = "2012-10-17"
@@ -15,6 +15,10 @@ resource "aws_iam_policy" "iam_create_role_policy_v2" {
       }
     ]
   })
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_iam_role" "lambda_exec" {
@@ -35,13 +39,13 @@ resource "aws_iam_role" "lambda_exec" {
 }
 
 resource "aws_iam_user_policy_attachment" "attach_create_role_policy" {
-  user       = "user3714258=feehvecch@gmail.com"
-  policy_arn = aws_iam_policy.iam_create_role_policy_v2.arn
+  user       = "voclabs/user3714258=feehvecch@gmail.com"
+  policy_arn = aws_iam_policy.iam_create_role_policy.arn
 }
 
 #resource "aws_iam_role_policy_attachment" "attach_create_role_policy" {
 #  role       = "lambda_exec_role"
-#  policy_arn = aws_iam_policy.iam_create_role_policy_v2.arn
+#  policy_arn = aws_iam_policy.iam_create_role_policy.arn
 #}
 
 output "lambda_exec_role_arn" {
