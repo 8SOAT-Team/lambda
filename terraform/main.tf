@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "mterraform-fast-order"  # Nome do seu bucket S3
+    key    = "terraform/statefile.tfstate"  # Caminho onde o arquivo de estado será armazenado no S3
+    region = "us-east-1"  # Região do S3
+  }
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -15,12 +23,4 @@ module "api_gateway" {
   source = "./api_gateway.tf"
   swagger_file = "swagger.json"
   lambda_authorizer_arn = module.lambda.lambda_arn
-}
-
-terraform {
-  backend "s3" {
-    bucket = "terraform-fast-order"
-    key    = "path/to/your/statefile.tfstate"
-    region = "us-east-1"
-  }
 }
