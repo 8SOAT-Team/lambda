@@ -30,7 +30,7 @@ jobs:
           ${{ runner.os }}-terraform-modules-
 
     - name: Check AWS CLI version
-      run: aws --version  # Verifica se a AWS CLI está instalada corretamente
+      run: aws --version
     
     - name: Check AWS credentials
       run: aws sts get-caller-identity 
