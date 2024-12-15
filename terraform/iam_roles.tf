@@ -11,6 +11,21 @@ resource "aws_iam_role" "lambda_exec" {
           Service = "lambda.amazonaws.com"
         }
       },
+      {
+        Effect   = "Allow"
+        Action   = "iam:CreateRole"
+        Resource = "*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = "iam:AttachRolePolicy"
+        Resource = "*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = "iam:PutRolePolicy"
+        Resource = "*"
+      }
     ]
   })
 }
