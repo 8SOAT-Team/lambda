@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "mterraform-fast-order"  # Nome do seu bucket S3
-    key    = "terraform/statefile.tfstate"  # Caminho onde o arquivo de estado será armazenado no S3
-    region = "us-east-1"  # Região do S3
+    bucket = "terraform-fast-order-1"
+    key    = "terraform/statefile.tfstate"
+    region = "us-east-1"
   }
 }
 
