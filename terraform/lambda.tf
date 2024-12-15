@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "example_lambda" {
+resource "aws_lambda_function" "lambda" {
   function_name = "custom_authorizer"
   runtime       = "nodejs18.x"
   role          = var.lambda_role
@@ -11,9 +11,9 @@ resource "aws_lambda_permission" "api_gateway_permission" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   principal     = "apigateway.amazonaws.com"
-  function_name = aws_lambda_function.example_lambda.function_name
+  function_name = aws_lambda_function.lambda.handler
 }
 
 output "lambda_arn" {
-  value = aws_lambda_function.example_lambda.arn
+  value = aws_lambda_function.lambda.arn
 }
