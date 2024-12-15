@@ -11,7 +11,7 @@ resource "aws_lambda_permission" "api_gateway_permission" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   principal     = "apigateway.amazonaws.com"
-  function_name = aws_lambda_function.lambda.handler
+  function_name = aws_lambda_function.lambda.arn
 }
 
 output "lambda_arn" {
