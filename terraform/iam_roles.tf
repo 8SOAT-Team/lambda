@@ -38,8 +38,6 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-
-
 resource "aws_iam_role_policy_attachment" "attach_create_role_policy" {
   role       = "lambda_exec_role"
   policy_arn = aws_iam_policy.iam_create_role_policy.arn
