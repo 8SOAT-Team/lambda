@@ -1,5 +1,5 @@
 data "aws_api_gateway_rest_api" "swagger_api" {
-  body = file(var.swagger_file)
+  body = file("./swagger.json")
 }
 
 resource "aws_api_gateway_rest_api" "api" {
