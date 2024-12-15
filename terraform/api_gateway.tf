@@ -1,11 +1,7 @@
-data "aws_api_gateway_rest_api" "swagger_api" {
-  body = file("./swagger.json")
-}
-
 resource "aws_api_gateway_rest_api" "api" {
-  name        = "swagger"
+  name        = "swagger-api"
   description = "API criada a partir do arquivo Swagger"
-  body        = data.aws_api_gateway_rest_api.swagger_api.body
+  body        = file("./swagger.json")
 }
 
 resource "aws_api_gateway_authorizer" "lambda_authorizer" {
