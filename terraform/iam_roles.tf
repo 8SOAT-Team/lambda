@@ -1,22 +1,16 @@
 resource "aws_iam_policy" "iam_create_role_policy" {
   name        = "iam_create_role_policy"
-  description = "Permite criar roles IAM"
+  description = "Permite criar roles IAM e anexar políticas"
   policy      = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "iam:CreateRole"
-        Resource = "*"
-      },
-      {
-        Effect   = "Allow"
-        Action   = "iam:AttachRolePolicy"
-        Resource = "*"
-      },
-      {
-        Effect   = "Allow"
-        Action   = "iam:PutRolePolicy"
+        Action   = [
+          "iam:CreateRole",
+          "iam:AttachRolePolicy",
+          "iam:PutRolePolicy"
+        ]
         Resource = "*"
       }
     ]
@@ -38,6 +32,11 @@ resource "aws_iam_role" "lambda_exec" {
       },
     ]
   })
+}
+
+resource "aws_iam_user_policy_attachment" "attach_create_role_policy" {
+  user       = "voclabs/user3714258=feehvecch@gmail.com"
+  policy_arn = aws_iam_policy.iam_create_role_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "attach_create_role_policy" {
