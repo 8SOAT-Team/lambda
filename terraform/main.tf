@@ -16,3 +16,11 @@ module "api_gateway" {
   swagger_file = "swagger.json"
   lambda_authorizer_arn = module.lambda.lambda_arn
 }
+
+terraform {
+  backend "s3" {
+    bucket = "terraform-fast-order"
+    key    = "path/to/your/statefile.tfstate"
+    region = "us-east-1"
+  }
+}
