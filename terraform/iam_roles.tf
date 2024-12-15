@@ -15,10 +15,6 @@ resource "aws_iam_policy" "iam_create_role_policy" {
       }
     ]
   })
-
-  lifecycle {
-    create_before_destroy = true
-  }
 }
 
 resource "aws_iam_role" "lambda_exec" {
