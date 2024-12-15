@@ -38,15 +38,12 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-resource "aws_iam_user_policy_attachment" "attach_create_role_policy" {
-  user       = "voclabs/user3714258=feehvecch@gmail.com"
+
+
+resource "aws_iam_role_policy_attachment" "attach_create_role_policy" {
+  role       = "lambda_exec_role"
   policy_arn = aws_iam_policy.iam_create_role_policy.arn
 }
-
-#resource "aws_iam_role_policy_attachment" "attach_create_role_policy" {
-#  role       = "lambda_exec_role"
-#  policy_arn = aws_iam_policy.iam_create_role_policy.arn
-#}
 
 output "lambda_exec_role_arn" {
   value = aws_iam_role.lambda_exec.arn
