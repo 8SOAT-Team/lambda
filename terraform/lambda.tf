@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "lambda" {
   function_name = "custom_authorizer"
   runtime       = "nodejs18.x"
-  role          = var.lambda_role
+  role          = aws_iam_role.lambda_exec.arn
   handler       = "index.handler"
   filename      = "lambda.zip"
   source_code_hash = filebase64sha256("lambda.zip")
